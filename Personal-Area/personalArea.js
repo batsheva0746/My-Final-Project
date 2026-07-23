@@ -62,5 +62,5 @@ function loadUserProfile() {
 }
 
 function goToMenu() {
-    window.location.href = "../Menu/gamesMenu.html";
+    window.location.href = "../Menu/Menu.html";
 }
