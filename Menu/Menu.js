@@ -27,7 +27,7 @@ function personal_area() {
 }
 
 function goToMenu() {
-    window.location.href = "../Menu/Menu.html";
+    window.location.href = "../Menu/gamesMenu.html";
 }
 
 function goToProfile() {
@@ -55,7 +55,7 @@ function showHighScores() {
     let currentUser = sessionStorage.getItem("currentUser");
     let tbody = document.querySelector("#records-body");
     
-    if (!tbody) return; // הגנה במידה והאלמנט לא קיים בעמוד הנוכחי
+    if (!tbody) return;
     tbody.innerHTML = "";
 
     if (topPlayers.length === 0) {
