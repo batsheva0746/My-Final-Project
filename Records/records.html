@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>טבלת שיאים</title>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link href="./records.css" rel="stylesheet">
+    <link href="../Image/good.png" rel="icon">
+</head>
+<body>
+    <button id="btn-profile" class="btn btn-nav" onclick="goToProfile()">לאזור האישי 👤</button>
+    <button id="btn-menu" class="btn btn-nav" onclick="goToMenu()">חזרה לתפריט המשחקים 🔙</button>
+    <div class="records-container">
+        <h1 id="title">טבלת המובילים 🏆</h1>
+        <table id="records-table">
+            <thead>
+                <tr>
+                    <th>מקום</th>
+                    <th>שם שחקן</th>
+                    <th>ניקוד</th>
+                    <th>תאריך שיא</th>
+                </tr>
+            </thead>
+            <tbody id="records-body">
+            </tbody>
+        </table>
+        <button class="btn-back" onclick="goToMenu()">חזרה לתפריט</button>
+    </div>
+    <script src="./records.js"></script>
+    
+</body>
+</html>

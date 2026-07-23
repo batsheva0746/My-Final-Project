@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>איקס עיגול</title>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link href="./Tic-Tac-Toe.css" rel="stylesheet">
+</head>
+<body>
+
+    <a id="back-to-menu" href="../Games-Menu/gamesMenu.html">חזרה לתפריט ➔</a>
+
+    <h1>איקס עיגול</h1>
+
+    <div id="start-screen">
+        <h2 class="subtitle">הכנסת שחקנים</h2>
+        <div class="input-group">
+            <label for="player1-input">שחקן 1 (X):</label>
+            <input type="text" id="player1-input" placeholder="הכנס שם..." required>
+        </div>
+        <div class="input-group">
+            <label for="player2-input">שחקן 2 (O):</label>
+            <input type="text" id="player2-input" placeholder="הכנס שם..." required>
+        </div>
+        <button id="start-btn" onclick="startGame()">התחל משחק</button>
+    </div>
+
+    <div id="game-wrapper" style="display: none;">
+        <div class="game-status-bar">
+            <div id="turn-display">תור: <span id="current-player-name"></span> (<span id="current-player-symbol">X</span>)</div>
+        </div>
+
+        <div id="board">
+            <div class="cards" id="1" onclick="turn(this)"></div>
+            <div class="cards" id="2" onclick="turn(this)"></div>
+            <div class="cards" id="3" onclick="turn(this)"></div>
+            <div class="cards" id="4" onclick="turn(this)"></div>
+            <div class="cards" id="5" onclick="turn(this)"></div>
+            <div class="cards" id="6" onclick="turn(this)"></div>
+            <div class="cards" id="7" onclick="turn(this)"></div>
+            <div class="cards" id="8" onclick="turn(this)"></div>
+            <div class="cards" id="9" onclick="turn(this)"></div>
+        </div>
+    </div>
+
+    <div id="container"></div>
+
+    <footer class="site-footer">
+        <p>כל הזכויות שמורות ©</p>
+        <p class="credit">Design & Code by Bat-sheva Peterburgsky</p>
+    </footer>
+
+    <script src="./Tic-Tac-Toe.js"></script>
+</body>
+</html>

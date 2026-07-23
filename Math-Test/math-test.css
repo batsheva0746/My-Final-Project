@@ -1,0 +1,173 @@
+body {
+    font-family: 'Assistant', 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    direction: rtl;
+    position: relative;
+}
+
+#back-to-menu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px 18px;
+    border-radius: 20px;
+    border: 2px solid #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(8px);
+    color: #4a90e2;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+#back-to-menu:hover {
+    transform: translateY(-2px);
+    background: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+#container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 380px;
+}
+
+.title {
+    color: #2c3e50;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #4a90e2;
+    background: #f0f4f8;
+    padding: 15px;
+    border-radius: 12px;
+    margin: 20px 0;
+    letter-spacing: 2px;
+}
+
+.options-container {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.option-item {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #34495e;
+}
+
+.option-item:hover {
+    border-color: #4a90e2;
+    background-color: #f0f7ff;
+    transform: translateY(-2px);
+}
+
+input[type="radio"] {
+    margin-left: 15px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+button {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+    box-shadow: 0 4px 0 #27ae60;
+    margin-top: 10px;
+}
+
+button:active {
+    box-shadow: none;
+    transform: translateY(4px);
+}
+
+/* --- עיצוב מסך הסיום: כפתורים זה לצד זה בגווני טורקיז ותכלת רעננים --- */
+
+h1.text {
+    font-size: 3.8rem;
+    font-weight: 800;
+    color: #41b3a3;
+    margin: 10px 0 25px 0;
+    text-shadow: 0 4px 12px rgba(65, 179, 163, 0.2);
+}
+
+/* מעטפת המציבה את כפתורי הסיום בשורה אחת */
+#container .action-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+#container .action-buttons button {
+    flex: 1;
+    margin-top: 0;
+    padding: 12px 10px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    border-radius: 16px;
+    border: none;
+    color: #ffffff;
+    font-family: 'Assistant', sans-serif;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+/* כפתור משחק חדש - גרדיאנט טורקיז-אזמרגד פסטלי */
+#container .action-buttons button:first-child {
+    background: linear-gradient(135deg, #48dbfb 0%, #1dd1a1 100%);
+    box-shadow: 0 6px 16px rgba(29, 209, 161, 0.35);
+}
+
+#container .action-buttons button:first-child:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(29, 209, 161, 0.5);
+}
+
+/* כפתור חזרה לתפריט - גרדיאנט כחול-תכלת רך */
+#container .action-buttons button.btn-secondary {
+    background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+    box-shadow: 0 6px 16px rgba(147, 172, 230, 0.35);
+}
+
+#container .action-buttons button.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(147, 172, 230, 0.5);
+}
+
+#container .action-buttons button:active {
+    transform: scale(0.97);
+}

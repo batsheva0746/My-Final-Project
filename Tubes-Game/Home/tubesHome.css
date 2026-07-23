@@ -1,0 +1,125 @@
+/* רקע פסטלי מדורג וחי - מועתק ישירות מתפריט המשחקים */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Varela Round', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: radial-gradient(circle, #f9f5ff 0%, #e8f0fe 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* הקונטיינר הראשי מעוצב כמו כרטיסיית משחק ענקית */
+.home-container {
+    background: #ffffff;
+    border: 5px solid #ffeaa7; /* צבע הגבול של משחק המבחנות בתפריט */
+    border-radius: 40px;
+    padding: 40px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 20px 40px rgba(108, 92, 231, 0.15), 0 8px 16px rgba(0, 0, 0, 0.03);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* כותרת עם אפקט גרדיאנט שקוף */
+h1 {
+    font-size: 42px;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #6c5ce7, #a8c0ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(2px 2px 0px #ffffff);
+    letter-spacing: 1px;
+}
+
+.description {
+    font-size: 18px;
+    color: #4a4a4a;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* קופסת ההוראות */
+.instructions-box {
+    background: linear-gradient(135deg, #f9f5ff 0%, #e8f0fe 100%);
+    border: 2px solid #e0d4ff;
+    border-radius: 24px;
+    padding: 25px;
+    margin-bottom: 35px;
+    text-align: right;
+    box-shadow: 0 8px 20px rgba(108, 92, 231, 0.05);
+}
+
+.instructions-box h3 {
+    margin-top: 0;
+    color: #6c5ce7;
+    font-size: 22px;
+    border-bottom: 2px solid #e0d4ff;
+    padding-bottom: 8px;
+}
+
+ul {
+    margin: 0;
+    padding-right: 20px;
+    color: #4a4a4a;
+    font-size: 16px;
+}
+
+li {
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.highlight {
+    color: #ff9ff3;
+    font-weight: bold;
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* עיצוב כפתורים התואם לכפתורי התפריט */
+.btn {
+    border: none;
+    border-radius: 24px;
+    color: #ffffff;
+    font-size: 20px;
+    font-family: 'Varela Round', sans-serif;
+    padding: 16px 24px;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+/* כפתור התחלה בצבעים המקוריים של המבחנות */
+.btn-start {
+    background: linear-gradient(135deg, #ffb7b2 0%, #ffdac1 100%);
+    box-shadow: 0 8px 20px rgba(255, 183, 178, 0.5);
+}
+
+/* כפתורי הניווט הנוספים */
+.btn-nav {
+    background: linear-gradient(135deg, #a8c0ff 0%, #fbc7d4 100%);
+    box-shadow: 0 8px 20px rgba(168, 192, 255, 0.4);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.05);
+}
+
+.btn:active {
+    transform: scale(0.97);
+}

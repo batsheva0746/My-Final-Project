@@ -1,0 +1,367 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+html { 
+    height: 100%; 
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Varela Round', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    background-image: url('../../Image/רקע משחק.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    display: grid;
+    
+    grid-template-areas:
+        "header header"
+        "status status"
+        "card board"
+        "footer footer";
+    grid-template-columns: 310px 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    align-items: center;
+    justify-items: center;
+    padding: 2vh 4vw 0 4vw;
+    gap: 15px;
+}
+
+#back-to-menu {
+    position: absolute;
+    top: 1.5vh;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 8px 18px;
+    border-radius: 20px;
+    border: 2px solid #ffffff;
+    box-shadow: 0 4px 15px rgba(108, 92, 231, 0.1);
+    backdrop-filter: blur(8px);
+    color: #6c5ce7;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+#back-to-menu:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(108, 92, 231, 0.2);
+    background: #ffffff;
+}
+
+h1 {
+    grid-area: header;
+    width: 100%;
+    text-align: center;
+    font-size: clamp(28px, 5.5vh, 48px);
+    font-weight: bold;
+    color: #6c5ce7;
+    text-shadow: 2px 2px 0px #ffffff, -2px -2px 0px #ffffff, 2px -2px 0px #ffffff, -2px 2px 0px #ffffff;
+    letter-spacing: 1.5px;
+    margin: 0;
+}
+
+.game-status-bar {
+    grid-area: status;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 1vh;
+}
+
+#timer, #level {
+    font-size: 18px;
+    font-weight: bold;
+    color: #4a4a4a;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: 2px solid #ffffff;
+    box-shadow: 0 4px 15px rgba(108, 92, 231, 0.08);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(6px);
+}
+
+#timer {
+    color: #ff7597;
+    border-color: #ffffff;
+}
+
+#card {
+    grid-area: card;
+    background: rgba(255, 255, 255, 0.88);
+    border: 3px solid #ffffff;
+    border-radius: 28px;
+    padding: 24px 28px 20px 28px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 12px;
+    box-shadow: 0 10px 25px rgba(108, 92, 231, 0.1);
+    transform: rotate(2deg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    justify-self: center;
+    position: relative;
+    backdrop-filter: blur(8px);
+}
+
+#card::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 24px;
+    background: rgba(255, 234, 167, 0.75);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    border-left: 3px dashed rgba(255,255,255,0.8);
+    border-right: 3px dashed rgba(255,255,255,0.8);
+}
+
+#card:hover { 
+    transform: rotate(0deg) scale(1.02); 
+}
+
+.mini_tube {
+    width: 32px;
+    height: 140px;
+    box-sizing: border-box;
+    border: 2px solid #ffcad4;
+    background-color: #ffffff;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: flex-start;
+    padding-bottom: 6px;
+    gap: 4px;
+    box-shadow: inset -2px -2px 5px rgba(255, 240, 242, 0.8);
+}
+
+.mini_ball {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    position: relative;
+    box-sizing: border-box;
+    box-shadow: inset -2px -2px 4px rgba(0, 0, 0, 0.1), inset 2px 2px 3px rgba(255, 255, 255, 0.9);
+}
+
+.mini_ball::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 5px;
+    width: 5px;
+    height: 2.5px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+}
+
+#game-board {
+    grid-area: board;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: min(25px, 2vw);
+    padding: min(35px, 3vh) min(35px, 3vw);
+    background: rgba(255, 255, 255, 0.88); 
+    border-radius: 36px;
+    border: 3px solid #ffffff; 
+    box-shadow: 0 15px 35px rgba(108, 92, 231, 0.1);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    max-width: 680px;
+    min-height: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.tube {
+    --ball: clamp(36px, 5.8vh, 65px);
+    width: calc(var(--ball) + 20px);
+    height: calc(var(--ball) * 5 + 8px * 4 + 35px);
+    box-sizing: border-box;
+    border: 3.5px solid #ffcad4;
+    background-color: #ffffff;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03), 
+                inset -6px -6px 15px rgba(255, 240, 242, 0.7), 
+                inset 6px 6px 15px rgba(239, 243, 250, 0.5);
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: flex-start;
+    padding-bottom: 18px;
+    padding-top: 18px;
+    gap: 8px;
+    cursor: pointer;
+    position: relative;
+    /* תגובה מהירה ועדינה */
+    transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tube:hover {
+    transform: translateY(-4px);
+    border-color: #ffb7b2;
+    box-shadow: 0 10px 20px rgba(255, 183, 178, 0.3);
+}
+
+/* הרמה עדינה בלבד במקום קפיצה גבוהה */
+.tube.selected {
+    border-color: #8be4c5;
+    z-index: 10;
+    transform: translateY(-8px); /* הרמה עדינה של 8 פיקסלים */
+    box-shadow: 0 12px 25px rgba(139, 228, 197, 0.5);
+}
+
+.ball {
+    width: var(--ball, 65px);
+    height: var(--ball, 65px);
+    border-radius: 50%;
+    flex-shrink: 0;
+    position: relative;
+    box-sizing: border-box;
+    box-shadow: inset -6px -6px 12px rgba(0, 0, 0, 0.12), 
+                inset 5px 5px 10px rgba(255, 255, 255, 0.9), 
+                0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.15s ease;
+}
+
+.ball::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    width: 13px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    transform: rotate(-15deg);
+}
+
+.tube:hover .ball { 
+    transform: scale(1.02); 
+}
+
+#container:empty { 
+    display: none; 
+}
+
+#container {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    z-index: 100;
+    text-align: center;
+    background: rgba(250, 246, 240, 0.65);
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.title {
+    background: #ffffff;
+    border: 4px solid #f3e8ff;
+    border-radius: 35px;
+    padding: 35px 60px;
+    box-shadow: 0 20px 50px rgba(108, 92, 231, 0.2);
+    width: auto;
+    min-width: 320px;
+    max-width: 85vw;
+    font-size: clamp(28px, 5vh, 42px);
+    font-weight: bold;
+    color: #6c5ce7;
+    margin: 0;
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-sizing: border-box;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.7); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+#container button {
+    background: linear-gradient(135deg, #a8c0ff 0%, #fbc7d4 100%);
+    border: 2px solid #ffffff;
+    border-radius: 25px;
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 16px 45px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(168, 192, 255, 0.45);
+    font-family: 'Varela Round', sans-serif;
+    transition: all 0.2s ease;
+}
+
+#container button:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 12px 30px rgba(168, 192, 255, 0.6);
+}
+
+#container button:active { 
+    transform: scale(0.97); 
+}
+
+.site-footer {
+    grid-area: footer;
+    grid-column: 1 / -1;
+    width: auto;
+    padding: 12px 24px;
+    margin-top: auto;
+    justify-self: end;
+    text-align: center;
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 15px;
+    box-sizing: border-box;
+    z-index: 5;
+}
+
+.site-footer p {
+    margin: 3px 0;
+    color: #4a3b82;
+    font-family: 'Varela Round', sans-serif;
+}
+
+.site-footer .credit {
+    font-family: 'Varela Round', sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: #2b5c5e;
+}

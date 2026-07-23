@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>משחק המבחנות</title>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link href="./tubes-game.css" rel="stylesheet">
+    <link href="../../Image/icon.png" rel="icon">
+</head>
+<body>
+    <a id="back-to-menu" onclick="backToMenu()">🔙 חזרה לתפריט</a>
+
+    <h1>משחק המבחנות</h1>
+
+    <div class="game-status-bar">
+        <div id="level">שלב: 1</div>
+        <div id="timer">30</div>
+    </div>
+
+    <div id="card"></div>
+    <div id="game-board"></div>
+
+    <div id="container"></div>
+
+    <footer class="site-footer">
+        <p>© כל הזכויות שמורות</p>
+        <p class="credit">Design & Code by Bat-sheva Peterburgsky</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="./tubes-game.js"></script>
+</body>
+</html>

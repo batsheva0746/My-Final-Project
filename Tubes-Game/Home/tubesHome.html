@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>משחק המבחנות - הוראות</title>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link href="./tubesHome.css" rel="stylesheet">
+    <link href="../../Image/iconr.png" rel="icon">
+</head>
+<body>
+
+    <div class="home-container">
+        <h1>משחק המבחנות 🧪</h1>
+        
+        <p class="description">
+            ברוכים הבאים למשחק המבחנות הרשמי! משחק חשיבה מאתגר שבו תצטרכו למיין כדורים צבעוניים ולהתאים אותם לכרטיס המטרה.
+        </p>
+
+        <div class="instructions-box">
+            <h3>איך משחקים? 🤔</h3>
+            <ul>
+                <li><strong>בחירת כדור:</strong> לחצו על מבחנה כדי לבחור את הכדור העליון שלה.</li>
+                <li><strong>העברת כדור:</strong> לחצו על מבחנה אחרת כדי להעביר אליה את הכדור שנבחר.</li>
+                <li><strong>חוקי המיון:</strong> כל מבחנה יכולה להכיל עד <span class="highlight">5 כדורים</span> בלבד.</li>
+                <li><strong>מטרת המשחק:</strong> סדרו את הלוח הראשי כך שיהיה זהה לחלוטין לכרטיס המטרה הקטן.</li>
+                <li><strong>זהירות מהזמן:</strong> לרשותכם עומדות <span class="highlight">זמן מוגבל</span> לפתרון השלב!</li>
+            </ul>
+        </div>
+
+        <div class="menu-buttons">
+            <button class="btn btn-start" onclick="goToGame()">התחל משחק 🎮</button>
+            <button class="btn btn-nav" onclick="goToMenu()">חזרה לתפריט המשחקים 🔙</button>
+            <button class="btn btn-nav" onclick="goToProfile()">לאזור האישי 👤</button>
+        </div>
+    </div>
+
+    <script src="./tubesHome.js"></script>
+</body>
+</html>

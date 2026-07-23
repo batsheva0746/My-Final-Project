@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תפריט משחקים</title>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link href="./gamesMenu.css" rel="stylesheet">
+    <link href="../Image/menu.jpg" rel="icon">
+</head>
+<body>
+
+    <button id="btn-records-menu" onclick="goToRecords()">טבלת שיאים 🏆</button>
+    
+    <div id="link-user"></div>
+
+    <header id="header">תפריט משחקים</header>
+
+    <div id="selectGame">
+        <div class="games">
+            <img src="../Image/משחק המבחנות.png" alt="משחק המבחנות">
+            <button onclick="TUBES_GAME()">משחק המבחנות</button>
+        </div>
+        <div class="games">
+            <img src="../Image/איקס עיגול.png" alt="איקס עיגול">
+            <button onclick="TICTACTOE()">איקס עיגול</button>
+        </div>
+        <div class="games">
+            <img src="../Image/מבחן בחשבון.png" alt="מבחן בחשבון">
+            <button onclick="MATH_TEST()">מבחן בחשבון</button>
+        </div>
+    </div>
+
+    <script src="./gamesMenu.js"></script>
+</body>
+</html>
