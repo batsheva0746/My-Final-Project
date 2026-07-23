@@ -23,9 +23,20 @@ function TUBES_GAME() {
 }
 
 function personal_area() {
-    document.addEventListener("DOMContentLoaded", () => {
-    showHighScores();
-});
+    window.location.href = "../Personal-Area/personalArea.html";
+}
+
+function goToMenu() {
+    window.location.href = "../Menu/Menu.html";
+}
+
+function goToProfile() {
+    window.location.href = "../Personal-Area/personalArea.html";
+}
+
+function goToRecords() {
+    window.location.href = "../Records/records.html";
+}
 
 function showHighScores() {
     let highScores = JSON.parse(localStorage.getItem("highScores")) || [];
@@ -43,6 +54,8 @@ function showHighScores() {
 
     let currentUser = sessionStorage.getItem("currentUser");
     let tbody = document.querySelector("#records-body");
+    
+    if (!tbody) return; // הגנה במידה והאלמנט לא קיים בעמוד הנוכחי
     tbody.innerHTML = "";
 
     if (topPlayers.length === 0) {
@@ -63,17 +76,4 @@ function showHighScores() {
         `;
         tbody.appendChild(row);
     });
-}
-
-function goToMenu() {
-    window.location.href = "../Menu/Menu.html";
-}
-
-function goToProfile() {
-    window.location.href = "../Personal-Area/personalArea.html";
-}
-}
-
-function goToRecords() {
-    window.location.href = "../Records/records.html";
 }
