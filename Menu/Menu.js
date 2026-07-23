@@ -23,7 +23,7 @@ function TUBES_GAME() {
 }
 
 function personal_area() {
-    window.location.href = "../personal-area/personalArea.html";
+    window.location.href = "../Personal-area/personalArea.html";
 }
 
 function goToRecords() {
