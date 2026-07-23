@@ -46,7 +46,7 @@ function loadUserProfile() {
 
                 <div class="stat-box extra-info">
                     <h3>⏱️ נתונים נוספים</h3>
-                    <p>שיא זמן למבחנה: <strong>${user.bestTime ? user.bestTime + ' שניות' : 'אין עדיין'}</strong></p>
+                    <p>שיא זמן לשלב: <strong>${user.bestTime ? user.bestTime + ' שניות' : 'אין עדיין'}</strong></p>
                     <p>זמן משחק מצטבר: <strong>${timeFormatted}</strong></p>
                 </div>
             </div>
