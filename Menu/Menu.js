@@ -15,7 +15,7 @@ function TICTACTOE() {
 }
 
 function MATH_TEST() {
-    window.location.href = "../Math-test/math-test.html";
+    window.location.href = "../Math-Test/math-test.html";
 }
 
 function TUBES_GAME() {
@@ -23,7 +23,7 @@ function TUBES_GAME() {
 }
 
 function personal_area() {
-    window.location.href = "../Personal-area/personalArea.html";
+    window.location.href = "../Personal-Area/personalArea.html";
 }
 
 function goToRecords() {
