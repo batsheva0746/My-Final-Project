@@ -117,3 +117,20 @@ h2.title:only-child {
     font-weight: bold;
     margin: 0;
 }
+.register-link-wrapper {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.custom-register-btn {
+    color: #4a90e2;
+    font-size: 0.95rem;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.custom-register-btn:hover {
+    color: #2c3e50;
+}
