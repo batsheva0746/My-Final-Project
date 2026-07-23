@@ -139,3 +139,32 @@ body {
     filter: brightness(1.05);
     box-shadow: 0 12px 25px rgba(168, 192, 255, 0.5);
 }
+.stats-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 25px 0;
+}
+
+.stat-box {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #e0d4ff;
+    border-radius: 20px;
+    padding: 20px;
+    min-width: 220px;
+    box-shadow: 0 8px 20px rgba(108, 92, 231, 0.08);
+    text-align: center;
+}
+
+.stat-box h3 {
+    margin-top: 0;
+    color: #6c5ce7;
+    font-size: 18px;
+}
+
+.stat-box p {
+    font-size: 16px;
+    margin: 8px 0;
+    color: #4a4a4a;
+}
