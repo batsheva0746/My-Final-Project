@@ -21,6 +21,11 @@ function loadUserProfile() {
         return;
     }
 
+    let stageWins = user.stageWins !== undefined ? user.stageWins : (user.wins || 0);
+    let stageLosses = user.stageLosses !== undefined ? user.stageLosses : (user.losses || 0);
+    let fullWins = user.fullWins || 0;
+    let fullLosses = user.fullLosses || 0;
+
     // חישוב זמן משחק כולל בדקות ושניות
     let totalSeconds = user.totalPlayTime || 0;
     let minutes = Math.floor(totalSeconds / 60);
