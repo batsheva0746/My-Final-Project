@@ -21,7 +21,7 @@ function showHighScores() {
     tbody.innerHTML = "";
 
     if (topPlayers.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="4" class="empty-row">עדיין אין שיאים - שחקי כדי להיות הראשונה בטבלה! 🏆</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="4" class="empty-row">עדיין אין שיאים - שחק/י כדי להיות הראשונה בטבלה! 🏆</td></tr>`;
         return;
     }
 
