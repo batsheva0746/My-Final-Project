@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function goToMenu() {
-    window.location.href = "../Games-Menu/gamesMenu.html";
+    window.location.href = "../Menu/Menu.html";
 }
 
 function goToLogin() {

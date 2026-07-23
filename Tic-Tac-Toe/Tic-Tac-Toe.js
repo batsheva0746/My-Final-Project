@@ -119,5 +119,5 @@ function restartGame() {
 }
 
 function backToMenu() {
-    window.location.href = "../Games-Menu/gamesMenu.html";
+    window.location.href = "../Menu/Menu.html";
 }

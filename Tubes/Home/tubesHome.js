@@ -1,9 +1,9 @@
 function goToGame() {
-    window.location.href = "../Game/tubes-game.html";
+    window.location.href = "../tubes/tubes.html";
 }
 
 function goToMenu() {
-    window.location.href = "../../Games-Menu/gamesMenu.html";
+    window.location.href = "../../Menu/Menu.html";
 }
 
 function goToProfile() {

@@ -42,7 +42,7 @@ function login() {
 
     if (foundUser) {
         sessionStorage.setItem("currentUser", newName);
-        window.location.href = "../Games-Menu/gamesMenu.html";
+        window.location.href = "../Menu/Menu.html";
     } else {
         document.querySelector("#details").innerHTML = `
             <h2 class="title">אינך רשום/ה למערכת</h2>
@@ -111,7 +111,7 @@ function signUp() {
     document.querySelector("#details").innerHTML = `<h2 class="title">נרשמת בהצלחה!!</h2>`;
     setTimeout(() => {
         sessionStorage.setItem("currentUser", name);
-        window.location.href = "../Games-Menu/gamesMenu.html";
+        window.location.href = "../Menu/Menu.html";
     }, 1000);
 }
 
