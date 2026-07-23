@@ -80,21 +80,22 @@ function start_game() {
         TubeArr.push([]);
     }
 
-let lastNum = null;
-for (let i = 0; i < colorsNum; i++) {
-    let num;
-    do {
-        num = Math.floor(Math.random() * 6) + 1;
-    } while (num === lastNum); // מונע הגרלת אותו מספר ברצף
-    lastNum = num;
+    // הגרלה ללא חזרתיות רצופה על אותו צבע
+    let lastNum = null;
+    for (let i = 0; i < colorsNum; i++) {
+        let num;
+        do {
+            num = Math.floor(Math.random() * 6) + 1;
+        } while (num === lastNum);
+        lastNum = num;
 
-    let numberColor = color(num);
-    if (ColorArr.includes(numberColor)) {
-        i--;
-    } else {
-        ColorArr.push(numberColor);
+        let numberColor = color(num);
+        if (ColorArr.includes(numberColor)) {
+            i--;
+        } else {
+            ColorArr.push(numberColor);
+        }
     }
-}
     let ballArr = [];
     let ballsPerColor = (level === 1) ? 4 : 5;
 
@@ -177,8 +178,8 @@ function clock() {
         let allUsers = JSON.parse(localStorage.getItem("myUsers")) || [];
         let user = allUsers.find(findUser => findUser.name === currentUser);
         if (user) {
-            user.games = (user.games || 0) + 1;
-            user.losses = (user.losses || 0) + 1;
+            user.stageLosses = (user.stageLosses || 0) + 1;
+            user.fullLosses = (user.fullLosses || 0) + 1;
             if (currentGameSession) {
                 let playTime = Math.round((Date.now() - currentGameSession.startTime) / 1000);
                 user.totalPlayTime = (user.totalPlayTime || 0) + playTime;
@@ -246,33 +247,16 @@ function win(indexTube) {
         }
     }());
 
-    setTimeout(() => {
-        sound_end_stage.play();
-        if (level >= 5) {
-            sessionStorage.removeItem("gameLevel");
-            document.getElementById("container").innerHTML = `
-                <h1 class="title">ניצחת! סיימת את כל השלבים! 🏆🎉</h1>
-                <button onclick="backToMenu()">חזרה לתפריט</button>
-            `;
-        } else {
-            level++;
-            sessionStorage.setItem("gameLevel", level);
-            document.getElementById("container").innerHTML = `
-                <h1 class="title">כל הכבוד! סיימת את שלב ${level} בהצלחה! 🎉</h1>
-                <div style="display: flex; gap: 15px;">
-                    <button onclick="nextLevel()">לשלב הבא</button>
-                    <button onclick="backToMenu()">חזרה לתפריט</button>
-                </div>
-            `;
-        }
-    }, 1500);
-
     let currentUser = sessionStorage.getItem("currentUser");
     let allUsers = JSON.parse(localStorage.getItem("myUsers")) || [];
     let user = allUsers.find(findUser => findUser.name === currentUser);
     if (user) {
-        user.wins = (user.wins || 0) + 1;
-        user.games = (user.games || 0) + 1;
+        user.stageWins = (user.stageWins || 0) + 1;
+
+        if (level >= 5) {
+            user.fullWins = (user.fullWins || 0) + 1;
+        }
+
         if (!user.bestTime || time > user.bestTime) {
             user.bestTime = time;
         }
@@ -285,6 +269,28 @@ function win(indexTube) {
         let score = level * 100 + time * 10;
         saveScore(currentUser, score);
     }
+
+    setTimeout(() => {
+        sound_end_stage.play();
+        if (level >= 5) {
+            sessionStorage.removeItem("gameLevel");
+            document.getElementById("container").innerHTML = `
+                <h1 class="title">מדהים! סיימת את כל השלבים! 🏆🎉</h1>
+                <button onclick="backToMenu()">חזרה לתפריט</button>
+            `;
+        } else {
+            let currentFinishedLevel = level;
+            level++;
+            sessionStorage.setItem("gameLevel", level);
+            document.getElementById("container").innerHTML = `
+                <h1 class="title">כל הכבוד! סיימת את שלב ${currentFinishedLevel} בהצלחה! 🎉</h1>
+                <div style="display: flex; gap: 15px;">
+                    <button onclick="nextLevel()">לשלב הבא</button>
+                    <button onclick="backToMenu()">חזרה לתפריט</button>
+                </div>
+            `;
+        }
+    }, 1500);
 }
 
 function nextLevel() {
@@ -304,7 +310,7 @@ function saveScore(playerName, score) {
 function backToMenu() {
     stopAllSounds();
     sessionStorage.removeItem("gameLevel"); 
-    window.location.href = "../../Menu/Menu.html";
+    window.location.href = "../Menu/gamesMenu.html";
 }
 
 function restartFromLevelOne() {
