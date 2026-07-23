@@ -19,7 +19,7 @@ function MATH_TEST() {
 }
 
 function TUBES_GAME() {
-    window.location.href = "../Tubes-Game/Home/tubesHome.html";
+    window.location.href = "../Tubes/Home/tubesHome.html";
 }
 
 function personal_area() {
