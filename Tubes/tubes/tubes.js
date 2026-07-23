@@ -80,15 +80,21 @@ function start_game() {
         TubeArr.push([]);
     }
 
-    for (let i = 0; i < colorsNum; i++) {
-        let num = Math.floor(Math.random() * 6) + 1;
-        let numberColor = color(num);
-        if (ColorArr.includes(numberColor)) {
-            i--;
-        } else {
-            ColorArr.push(numberColor);
-        }
+let lastNum = null;
+for (let i = 0; i < colorsNum; i++) {
+    let num;
+    do {
+        num = Math.floor(Math.random() * 6) + 1;
+    } while (num === lastNum); // מונע הגרלת אותו מספר ברצף
+    lastNum = num;
+
+    let numberColor = color(num);
+    if (ColorArr.includes(numberColor)) {
+        i--;
+    } else {
+        ColorArr.push(numberColor);
     }
+}
     let ballArr = [];
     let ballsPerColor = (level === 1) ? 4 : 5;
 
@@ -245,14 +251,14 @@ function win(indexTube) {
         if (level >= 5) {
             sessionStorage.removeItem("gameLevel");
             document.getElementById("container").innerHTML = `
-                <h1 class="title">מדהים! סיימת את כל השלבים! 🏆🎉</h1>
+                <h1 class="title">ניצחת! סיימת את כל השלבים! 🏆🎉</h1>
                 <button onclick="backToMenu()">חזרה לתפריט</button>
             `;
         } else {
             level++;
             sessionStorage.setItem("gameLevel", level);
             document.getElementById("container").innerHTML = `
-                <h1 class="title">כל הכבוד! ניצחת! 🎉</h1>
+                <h1 class="title">כל הכבוד! סיימת את שלב ${level} בהצלחה! 🎉</h1>
                 <div style="display: flex; gap: 15px;">
                     <button onclick="nextLevel()">לשלב הבא</button>
                     <button onclick="backToMenu()">חזרה לתפריט</button>
