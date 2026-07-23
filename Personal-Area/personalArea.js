@@ -42,5 +42,5 @@ function goToMenu() {
 }
 
 function goToLogin() {
-    window.location.href = "../Login/index.html";
+    window.location.href = "../Login/login.html";
 }
