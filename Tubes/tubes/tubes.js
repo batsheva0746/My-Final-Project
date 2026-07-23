@@ -310,7 +310,7 @@ function saveScore(playerName, score) {
 function backToMenu() {
     stopAllSounds();
     sessionStorage.removeItem("gameLevel"); 
-    window.location.href = "../Menu/Menu.html";
+    window.location.href = "../../Menu/Menu.html";
 }
 
 function restartFromLevelOne() {
