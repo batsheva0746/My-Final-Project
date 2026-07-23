@@ -365,3 +365,44 @@ h1 {
     letter-spacing: 0.5px;
     color: #2b5c5e;
 }
+/* התאמה למסכים קטנים / מובייל */
+@media (max-width: 768px) {
+    /* סידור האלמנטים בטור אחד מרכזי */
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    /* סידור הכותרת והכפתור העליון */
+    .title {
+        font-size: 24px;
+        margin-top: 40px;
+        text-align: center;
+    }
+
+    /* התאמת לוח המשחק למרכז המסך */
+    #game-board {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+    }
+
+    /* התאמת גודל המבחנות למסך צר */
+    .tube {
+        width: 45px;
+        height: 180px;
+    }
+
+    /* התאמת כרטיסיית המבחנות הקטנות */
+    #card {
+        transform: scale(0.85); /* הקטנה קלה למובייל */
+        margin: 10px auto;
+    }
+}
