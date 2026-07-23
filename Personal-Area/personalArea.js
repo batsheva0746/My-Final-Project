@@ -1,46 +1,61 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let currentUser = sessionStorage.getItem("currentUser");
-    let allUsers = JSON.parse(localStorage.getItem("myUsers")) || [];
-    let user = allUsers.find(findUser => findUser.name === currentUser);
-    let container = document.getElementById("stats-container");
-
-    function calcAverageTime(user) {
-        if (!user.games) return 0;
-        return Math.round((user.totalPlayTime || 0) / user.games);
-    }
-
-    if (user) {
-        let userWins = (user.wins || 0);
-        let userGames = (user.games || 0);
-        let losses = (user.losses !== undefined) ? user.losses : Math.max(0, userGames - userWins);
-        let successRate = userGames > 0 ? Math.round((userWins / userGames) * 100) : 0;
-        let bestTime = (user.bestTime || 0);
-        let avgTime = calcAverageTime(user);
-
-        container.innerHTML = `
-            <h2 id="title">ההישגים של ${user.name} 🏆</h2>
-            <div id="stats">            
-                <p><span>מספר משחקים:</span> <span>${userGames}</span></p>
-                <p><span>מספר ניצחונות:</span> <span>${userWins}</span></p>
-                <p><span>מספר הפסדים:</span> <span>${losses}</span></p>
-                <p><span>אחוז הצלחה:</span> <span>${successRate}%</span></p>
-                <p><span>זמן ממוצע (שניות):</span> <span>${avgTime} ש'</span></p>
-                <p><span>שיא אישי (זמן שנותר):</span> <span>${bestTime} ש'</span></p>
-            </div>
-        `;
-    } else {
-        container.innerHTML = `
-            <h2 id="title">אזור אישי</h2>
-            <p class="guest-msg">אינך מחובר/ת כעת למערכת.</p>
-            <button class="guest-btn" onclick="goToLogin()">להתחברות / הרשמה</button>
-        `;
-    }
+    loadUserProfile();
 });
 
-function goToMenu() {
-    window.location.href = "../Menu/Menu.html";
+function loadUserProfile() {
+    let currentUser = sessionStorage.getItem("currentUser");
+    let allUsers = JSON.parse(localStorage.getItem("myUsers")) || [];
+    let user = allUsers.find(u => u.name === currentUser);
+
+    let profileContainer = document.getElementById("profile-info");
+    if (!profileContainer) return;
+
+    if (!user) {
+        profileContainer.innerHTML = `
+            <div class="user-card">
+                <h2>שלום אורח/ת!</h2>
+                <p>כדי לצפות בסטטיסטיקות האישיות שלך, יש להתחבר למערכת.</p>
+                <button onclick="goToMenu()">חזרה לתפריט</button>
+            </div>
+        `;
+        return;
+    }
+
+    // חישוב זמן משחק כולל בדקות ושניות
+    let totalSeconds = user.totalPlayTime || 0;
+    let minutes = Math.floor(totalSeconds / 60);
+    let seconds = totalSeconds % 60;
+    let timeFormatted = `${minutes} דק' ו-${seconds} שנ'`;
+
+    profileContainer.innerHTML = `
+        <div class="user-card">
+            <h2>שלום, ${user.name}! 👋</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-box full-games">
+                    <h3>🏆 משחקים מלאים (5 שלבים)</h3>
+                    <p>ניצחונות: <strong>${user.fullWins || 0}</strong></p>
+                    <p>הפסדים: <strong>${user.fullLosses || 0}</strong></p>
+                </div>
+
+                <div class="stat-box single-stages">
+                    <h3>⭐ שלבים בודדים</h3>
+                    <p>שלבים שנפתרו: <strong>${user.stageWins || 0}</strong></p>
+                    <p>ניסיונות שנכשלו: <strong>${user.stageLosses || 0}</strong></p>
+                </div>
+
+                <div class="stat-box extra-info">
+                    <h3>⏱️ נתונים נוספים</h3>
+                    <p>שיא זמן למבחנה: <strong>${user.bestTime ? user.bestTime + ' שניות' : 'אין עדיין'}</strong></p>
+                    <p>זמן משחק מצטבר: <strong>${timeFormatted}</strong></p>
+                </div>
+            </div>
+
+            <button onclick="goToMenu()">חזרה לתפריט</button>
+        </div>
+    `;
 }
 
-function goToLogin() {
-    window.location.href = "../Login/login.html";
+function goToMenu() {
+    window.location.href = "../Menu/gamesMenu.html";
 }
