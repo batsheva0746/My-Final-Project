@@ -72,6 +72,50 @@ function loadUserProfile() {
     `;
 }
 
+
 function goToMenu() {
     window.location.href = "../Menu/Menu.html";
+}
+
+// פונקציה להוספת ניקוד ועדכון שיא אישי בזמן אמת
+function addScore(points, elementForAnimation) {
+    let currentUser = sessionStorage.getItem("currentUser");
+    let allUsers = JSON.parse(localStorage.getItem("myUsers")) || [];
+    let userIndex = allUsers.findIndex(u => u.name === currentUser);
+
+    if (userIndex === -1) return;
+
+    // עדכון הניקוד הנוכחי של המשתמש
+    allUsers[userIndex].currentScore = (allUsers[userIndex].currentScore || 0) + points;
+
+    // בדיקה והגדרת שיא אישי חדש במידה ועברנו את השיא הקיים
+    if (allUsers[userIndex].currentScore > (allUsers[userIndex].topScore || 0)) {
+        allUsers[userIndex].topScore = allUsers[userIndex].currentScore;
+    }
+
+    // שמירה מעודכנת ב-localStorage
+    localStorage.setItem("myUsers", JSON.stringify(allUsers));
+
+    // הפעלת האנימציה הוויזואלית על הרכיב במסך
+    if (elementForAnimation) {
+        showFloatingPoints(points, elementForAnimation);
+    }
+}
+function showFloatingPoints(points, targetElement) {
+    const rect = targetElement.getBoundingClientRect();
+    const floatingEl = document.createElement("div");
+    
+    floatingEl.className = "floating-score";
+    floatingEl.innerText = `+${points}`;
+    
+    // מיקום האלמנט הצף בדיוק מעל הרכיב שקיבל את הניקוד
+    floatingEl.style.left = `${rect.left + rect.width / 2}px`;
+    floatingEl.style.top = `${rect.top}px`;
+
+    document.body.appendChild(floatingEl);
+
+    // הסרת האלמנט מה-DOM בסיום האנימציה (לאחר 1.2 שניות)
+    setTimeout(() => {
+        floatingEl.remove();
+    }, 1200);
 }
