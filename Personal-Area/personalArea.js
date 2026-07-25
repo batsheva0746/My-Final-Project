@@ -21,34 +21,50 @@ function loadUserProfile() {
         return;
     }
 
-    let stageWins = user.stageWins !== undefined ? user.stageWins : (user.wins || 0);
-    let stageLosses = user.stageLosses !== undefined ? user.stageLosses : (user.losses || 0);
-    let fullWins = user.fullWins || 0;
-    let fullLosses = user.fullLosses || 0;
+    // שליפת נתונים
+    let totalWins = user.fullWins || user.wins || 0;
+    let totalLosses = user.fullLosses || user.losses || 0;
+    let totalRuns = totalWins + totalLosses;
+    let highPoints = user.topScore || user.highScore || 0;
+    let stagesCompleted = user.stageWins || user.completedLevels || 0;
 
-    // חישוב זמן משחק כולל בדקות ושניות
-    let totalSeconds = user.totalPlayTime || 0;
-    let minutes = Math.floor(totalSeconds / 60);
-    let seconds = totalSeconds % 60;
-    let timeFormatted = `${minutes} דק' ו-${seconds} שנ'`;
+    // חישוב אחוז הצלחה
+    let successRate = totalRuns > 0 ? Math.round((totalWins / totalRuns) * 100) : 0;
 
     profileContainer.innerHTML = `
         <div class="user-card">
             <h2>שלום, ${user.name}! 👋</h2>
             
             <div class="stats-grid">
-                <div class="stat-box full-games">
-                    <h3>🏆 משחקים מלאים (5 שלבים)</h3>
-                    <p>ניצחונות: <strong>${user.fullWins || 0}</strong></p>
-                    <p>הפסדים: <strong>${user.fullLosses || 0}</strong></p>
+                <div class="stat-card color-1">
+                    <span class="stat-title">סה"כ הפעלות</span>
+                    <span class="stat-value">${totalRuns}</span>
                 </div>
 
-                <div class="stat-box single-stages">
-                    <h3>⭐ שלבים בודדים</h3>
-                    <p>שלבים שנפתרו: <strong>${user.stageWins || 0}</strong></p>
-                    <p>ניסיונות שנכשלו: <strong>${user.stageLosses || 0}</strong></p>
+                <div class="stat-card color-2">
+                    <span class="stat-title">מספר ניצחונות</span>
+                    <span class="stat-value">${totalWins}</span>
                 </div>
 
+                <div class="stat-card color-3">
+                    <span class="stat-title">מספר הפסדים</span>
+                    <span class="stat-value">${totalLosses}</span>
+                </div>
+
+                <div class="stat-card color-4">
+                    <span class="stat-title">אחוז הצלחה</span>
+                    <span class="stat-value">${successRate}%</span>
+                </div>
+
+                <div class="stat-card color-5">
+                    <span class="stat-title">שיא אישי</span>
+                    <span class="stat-value">${highPoints}</span>
+                </div>
+
+                <div class="stat-card color-6">
+                    <span class="stat-title">שלבים שהושלמו</span>
+                    <span class="stat-value">${stagesCompleted}</span>
+                </div>
             </div>
 
             <button onclick="goToMenu()">חזרה לתפריט</button>
