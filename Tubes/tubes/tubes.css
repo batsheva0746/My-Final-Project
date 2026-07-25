@@ -406,3 +406,31 @@ h1 {
         margin: 10px auto;
     }
 }
+/* עיצוב הניקוד הצף */
+.floating-score {
+    position: fixed;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #00b894;
+    text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+    pointer-events: none; /* מונע הפרעה ללחיצות עכבר */
+    z-index: 1000;
+    animation: floatUpAndFade 1.2s ease-out forwards;
+}
+
+/* הגדרת אנימציה: עליה למעלה והיעלמות עדינה */
+@keyframes floatUpAndFade {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 10px) scale(0.8);
+    }
+    20% {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(1.2);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50px) scale(1);
+    }
+}
