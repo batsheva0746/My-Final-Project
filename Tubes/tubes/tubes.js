@@ -80,7 +80,6 @@ function start_game() {
         TubeArr.push([]);
     }
 
-    // הגרלה ללא חזרתיות רצופה על אותו צבע
     let lastNum = null;
     for (let i = 0; i < colorsNum; i++) {
         let num;
@@ -219,6 +218,19 @@ function Clicking(indexTube) {
     TubeArr[indexTube].push(TubeArr[selectedTube].pop());
     sound_drop.play();
     selectedTube = null;
+
+    // --- תוספת: בדיקה והפעלת ניקוד +10 בעת השלמת מבחנה ---
+    let isTubeComplete = TubeArr[indexTube].length === TargetArr[indexTube].length &&
+        TubeArr[indexTube].length > 0 &&
+        TubeArr[indexTube].every((val, idx) => val === TargetArr[indexTube][idx]);
+
+    if (isTubeComplete) {
+        let tubeElements = document.querySelectorAll(".tube");
+        if (tubeElements[indexTube]) {
+            addScore(10, tubeElements[indexTube]);
+        }
+    }
+
     win(indexTube);
     renderBoard();
 }
@@ -230,6 +242,10 @@ function win(indexTube) {
             if (TubeArr[i][j] !== TargetArr[i][j]) return;
         }
     }
+
+    // --- תוספת: הענקת 50 נקודות + אנימציה בעת סיום שלב ---
+    let boardElement = document.getElementById("game-board") || document.body;
+    addScore(50, boardElement);
 
     clearInterval(timerInterval);
     stopAllSounds();
@@ -319,6 +335,7 @@ function restartFromLevelOne() {
     sessionStorage.removeItem("gameLevel");
     start_game();
 }
+
 function showFloatingPoints(points, targetElement) {
     const rect = targetElement.getBoundingClientRect();
     const floatingEl = document.createElement("div");
@@ -326,18 +343,16 @@ function showFloatingPoints(points, targetElement) {
     floatingEl.className = "floating-score";
     floatingEl.innerText = `+${points}`;
     
-    // מיקום האלמנט הצף בדיוק מעל הרכיב שקיבל את הניקוד
     floatingEl.style.left = `${rect.left + rect.width / 2}px`;
     floatingEl.style.top = `${rect.top}px`;
 
     document.body.appendChild(floatingEl);
 
-    // הסרת האלמנט מה-DOM בסיום האנימציה (לאחר 1.2 שניות)
     setTimeout(() => {
         floatingEl.remove();
     }, 1200);
 }
-// פונקציה להוספת ניקוד ועדכון שיא אישי בזמן אמת
+
 function addScore(points, elementForAnimation) {
     let currentUser = sessionStorage.getItem("currentUser");
     let allUsers = JSON.parse(localStorage.getItem("myUsers")) || [];
@@ -345,18 +360,14 @@ function addScore(points, elementForAnimation) {
 
     if (userIndex === -1) return;
 
-    // עדכון הניקוד הנוכחי של המשתמש
     allUsers[userIndex].currentScore = (allUsers[userIndex].currentScore || 0) + points;
 
-    // בדיקה והגדרת שיא אישי חדש במידה ועברנו את השיא הקיים
     if (allUsers[userIndex].currentScore > (allUsers[userIndex].topScore || 0)) {
         allUsers[userIndex].topScore = allUsers[userIndex].currentScore;
     }
 
-    // שמירה מעודכנת ב-localStorage
     localStorage.setItem("myUsers", JSON.stringify(allUsers));
 
-    // הפעלת האנימציה הוויזואלית על הרכיב במסך
     if (elementForAnimation) {
         showFloatingPoints(points, elementForAnimation);
     }
