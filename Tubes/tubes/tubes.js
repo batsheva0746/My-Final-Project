@@ -41,10 +41,24 @@ function color(num) {
 
 function card() {
     TargetArr = JSON.parse(JSON.stringify(TubeArr));
+    
     for (let i = 0; i < TargetArr.length; i++) {
-        TargetArr[i] = Mixing(TargetArr[i]);
+        // אם במבחנה יש יותר מכדור אחד, נדאג שהערבוב לא ייצא זהה למקור
+        if (TargetArr[i].length > 1) {
+            let original = JSON.stringify(TargetArr[i]);
+            let attempts = 0;
+            
+            do {
+                TargetArr[i] = Mixing(TargetArr[i]);
+                attempts++;
+            // ממשיכים לערבב כל עוד הסדר זהה למקור (עד 10 ניסיונות למניעת לולאה אינסופית)
+            } while (JSON.stringify(TargetArr[i]) === original && attempts < 10);
+        }
     }
+
     let cardBoard = document.getElementById("card");
+    if (!cardBoard) return;
+    
     cardBoard.innerHTML = "";
     for (let i = 0; i < TubeArr.length; i++) {
         let mini_tube = document.createElement("div");
@@ -219,7 +233,6 @@ function Clicking(indexTube) {
     sound_drop.play();
     selectedTube = null;
 
-    // --- תוספת: בדיקה והפעלת ניקוד +10 בעת השלמת מבחנה ---
     let isTubeComplete = TubeArr[indexTube].length === TargetArr[indexTube].length &&
         TubeArr[indexTube].length > 0 &&
         TubeArr[indexTube].every((val, idx) => val === TargetArr[indexTube][idx]);
@@ -243,7 +256,6 @@ function win(indexTube) {
         }
     }
 
-    // --- תוספת: הענקת 50 נקודות + אנימציה בעת סיום שלב ---
     let boardElement = document.getElementById("game-board") || document.body;
     addScore(50, boardElement);
 
@@ -354,12 +366,10 @@ function showFloatingPoints(points, targetElement) {
 }
 
 function addScore(points, elementForAnimation) {
-    // 1. הפעלת האנימציה הצפה תמיד (גם אם אין משתמש מחובר)
     if (elementForAnimation) {
         showFloatingPoints(points, elementForAnimation);
     }
 
-    // 2. עדכון הניקוד ב-localStorage במידה ויש משתמש מחובר
     let currentUser = sessionStorage.getItem("currentUser");
     if (!currentUser) return;
 
