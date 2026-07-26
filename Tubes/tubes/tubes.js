@@ -354,21 +354,25 @@ function showFloatingPoints(points, targetElement) {
 }
 
 function addScore(points, elementForAnimation) {
+    // 1. הפעלת האנימציה הצפה תמיד (גם אם אין משתמש מחובר)
+    if (elementForAnimation) {
+        showFloatingPoints(points, elementForAnimation);
+    }
+
+    // 2. עדכון הניקוד ב-localStorage במידה ויש משתמש מחובר
     let currentUser = sessionStorage.getItem("currentUser");
+    if (!currentUser) return;
+
     let allUsers = JSON.parse(localStorage.getItem("myUsers")) || [];
     let userIndex = allUsers.findIndex(u => u.name === currentUser);
 
-    if (userIndex === -1) return;
+    if (userIndex !== -1) {
+        allUsers[userIndex].currentScore = (allUsers[userIndex].currentScore || 0) + points;
 
-    allUsers[userIndex].currentScore = (allUsers[userIndex].currentScore || 0) + points;
+        if (allUsers[userIndex].currentScore > (allUsers[userIndex].topScore || 0)) {
+            allUsers[userIndex].topScore = allUsers[userIndex].currentScore;
+        }
 
-    if (allUsers[userIndex].currentScore > (allUsers[userIndex].topScore || 0)) {
-        allUsers[userIndex].topScore = allUsers[userIndex].currentScore;
-    }
-
-    localStorage.setItem("myUsers", JSON.stringify(allUsers));
-
-    if (elementForAnimation) {
-        showFloatingPoints(points, elementForAnimation);
+        localStorage.setItem("myUsers", JSON.stringify(allUsers));
     }
 }
